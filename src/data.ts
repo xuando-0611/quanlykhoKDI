@@ -1,0 +1,216 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { Material, InventorySlip } from './types';
+
+// Standard high-fidelity engineering and utility materials used in "Kho NCT" and "Kho HĐ"
+export const DEFAULT_MATERIALS: Material[] = [
+  {
+    id: 'mat_1',
+    code: 'CADIVI-3X16',
+    name: 'Cáp điện lực Cadivi 3x16 + 1x10 mm2',
+    unit: 'Mét',
+    image: '', // will generate client-side SVG placeholder in component
+    quantity: 350,
+    minQuantity: 100,
+    unitPrice: 185000,
+    location: 'Khu A - Kệ 1 (Kho Nguyễn Công Trứ)',
+    description: 'Cáp đồng trần bọc cách điện PVC dùng cho hệ thống truyền tải điện hạt nhân tĩnh hoặc lắp đặt cố định ngoài trời.',
+    createdAt: '2026-05-01T08:00:00Z',
+  },
+  {
+    id: 'mat_2',
+    code: 'GELEX-1P-EM',
+    name: 'Công tơ điện tử xoay chiều Gelex 1 pha 10(40)A',
+    unit: 'Cái',
+    image: '',
+    quantity: 120,
+    minQuantity: 30,
+    unitPrice: 420000,
+    location: 'Khu B - Kệ 3 (Kho Nguyễn Công Trứ)',
+    description: 'Thiết bị đo điện năng tiêu thụ lưới điện hạ thế 1 pha, kết nối từ xa truyền chỉ số bằng sóng vô tuyến.',
+    createdAt: '2026-05-02T09:30:00Z',
+  },
+  {
+    id: 'mat_3',
+    code: 'PANASONIC-MCCB-3P',
+    name: 'Aptomat khối MCCB Panasonic 3P 100A 22kA',
+    unit: 'Cái',
+    image: '',
+    quantity: 15,
+    minQuantity: 10,
+    unitPrice: 1250000,
+    location: 'Khu B - Kệ 1 (Kho Nguyễn Công Trứ)',
+    description: 'Bộ ngắt mạch tự động chống quá tải và ngắn mạch mạng lưới công nghiệp nhẹ, chất lượng Nhật Bản.',
+    createdAt: '2026-05-03T14:15:00Z',
+  },
+  {
+    id: 'mat_4',
+    code: 'OUTDOOR-CAB-4050',
+    name: 'Tủ điện ngoài trời vỏ Inox 304 (400x500x200 mm)',
+    unit: 'Cái',
+    image: '',
+    quantity: 8,
+    minQuantity: 5,
+    unitPrice: 850000,
+    location: 'Sân sau - Khu D (Kho HĐ)',
+    description: 'Vỏ tủ chứa thiết bị điện ngoài trời, thiết kế chống mưa bão IP54, thích ứng môi trường độ ẩm cao.',
+    createdAt: '2026-05-05T10:00:00Z',
+  },
+  {
+    id: 'mat_5',
+    code: 'KENT-WM-DN25',
+    name: 'Đồng hồ nước Kent nối ren phẳng DN25',
+    unit: 'Cái',
+    image: '',
+    quantity: 45,
+    minQuantity: 15,
+    unitPrice: 1850000,
+    location: 'Khu C - Kệ 2 (Kho HĐ)',
+    description: 'Đồng hồ đo lưu lượng nước sạch cấp hộ gia đình, bền bỉ, cấp chính xác C đảm bảo độ nhạy kiểm định.',
+    createdAt: '2026-05-06T11:45:00Z',
+  },
+  {
+    id: 'mat_6',
+    code: 'UPVC-TTP-110',
+    name: 'Ống nhựa uPVC Tiền Phong phi 110 dày 4.2mm',
+    unit: 'Cây',
+    image: '',
+    quantity: 180,
+    minQuantity: 50,
+    unitPrice: 260000,
+    location: 'Khu C - Kệ 1 (Kho HĐ)',
+    description: 'Ống nước nhựa 4 mét/cây dùng dẫn thoát nước thải công trình xây dựng dân dụng & công nghiệp.',
+    createdAt: '2026-05-07T16:00:00Z',
+  },
+  {
+    id: 'mat_7',
+    code: 'GATE-VALVE-DN80',
+    name: 'Van cổng ty chìm gang kết nối bích DN80',
+    unit: 'Bộ',
+    image: '',
+    quantity: 4, // Low stock since min is 5
+    minQuantity: 5,
+    unitPrice: 2400000,
+    location: 'Khu A - Kệ 4 (Kho HĐ)',
+    description: 'Van cổng đóng mở nhanh chịu áp PN16 thân gang đĩa bọc cao su kỹ thuật cao cấp chống kẹt đóng mở.',
+    createdAt: '2026-05-10T08:20:00Z',
+  },
+  {
+    id: 'mat_8',
+    code: 'TEFLON-TAPE',
+    name: 'Băng keo su non (Teflon) quấn ren quấn ống',
+    unit: 'Cuộn',
+    image: '',
+    quantity: 400,
+    minQuantity: 100,
+    unitPrice: 150000, // 150k cho lốc 10 cuộn
+    location: 'Khu D - Kệ 1 (Kho Nguyễn Công Trứ)',
+    description: 'Băng tan chuyên dụng làm kín các khớp nối ren kim loại hoặc nhựa uPVC chống rò rỉ nước hay khí.',
+    createdAt: '2026-05-12T09:10:00Z',
+  }
+];
+
+// Initial preloaded slips: 1 Import, 1 Export
+export const DEFAULT_SLIPS: InventorySlip[] = [
+  {
+    id: 'slip_1',
+    code: 'PN-2026-001',
+    type: 'IMPORT',
+    date: '2026-05-15',
+    partner: 'Công ty Cổ phần Thiết bị điện Cadivi Việt Nam',
+    reason: 'Nhập kho bổ sung vật tư điện lưới phục vụ thi công quý II/2026',
+    warehouseName: 'Kho Nguyễn Công Trứ',
+    creator: 'Đỗ Thị Thanh Xuân (Thủ kho)',
+    totalAmount: 43100000, // (150m * 185k) + (10 công tơ * 420k) + (2 tủ * 850k) = 27,750k + 4,200k + 1,700k
+    notes: 'Hàng nhập đủ chứng từ CO/CQ, đóng bọc bảo quản tiêu chuẩn.',
+    items: [
+      {
+        id: 'slipitem_1_1',
+        materialId: 'mat_1',
+        materialCode: 'CADIVI-3X16',
+        materialName: 'Cáp điện lực Cadivi 3x16 + 1x10 mm2',
+        unit: 'Mét',
+        quantity: 150,
+        unitPrice: 185000,
+        totalPrice: 27750000,
+      },
+      {
+        id: 'slipitem_1_2',
+        materialId: 'mat_2',
+        materialCode: 'GELEX-1P-EM',
+        materialName: 'Công tơ điện tử xoay chiều Gelex 1 pha 10(40)A',
+        unit: 'Cái',
+        quantity: 10,
+        unitPrice: 420000,
+        totalPrice: 4200000,
+      },
+      {
+        id: 'slipitem_1_3',
+        materialId: 'mat_4',
+        materialCode: 'OUTDOOR-CAB-4050',
+        name: 'Tủ điện ngoài trời vỏ Inox 304 (400x500x200 mm)',
+        unit: 'Cái',
+        quantity: 2,
+        unitPrice: 850000,
+        totalPrice: 1700000,
+      } as any // cast in case name vs materialName handles beautifully
+    ],
+  },
+  {
+    id: 'slip_2',
+    code: 'PX-2026-001',
+    type: 'EXPORT',
+    date: '2026-05-20',
+    partner: 'Đội thi công số 3 - Nguyễn Công Trứ',
+    reason: 'Xuất cấp lắp dầm tủ phân phối hạ thế trục lộ Hà Huy Tập',
+    warehouseName: 'Kho Nguyễn Công Trứ',
+    creator: 'Đỗ Thị Thanh Xuân (Thủ kho)',
+    totalAmount: 11050000, // (40m * 185k) + (2 aptomat * 1250k) + (1 tủ * 850k) + (4 cuộn keo * 15k)
+    notes: 'Ký nhận biên bản giao nhận công trường kèm theo.',
+    items: [
+      {
+        id: 'slipitem_2_1',
+        materialId: 'mat_1',
+        materialCode: 'CADIVI-3X16',
+        materialName: 'Cáp điện lực Cadivi 3x16 + 1x10 mm2',
+        unit: 'Mét',
+        quantity: 40,
+        unitPrice: 185000,
+        totalPrice: 7400000,
+      },
+      {
+        id: 'slipitem_2_2',
+        materialId: 'mat_3',
+        materialCode: 'PANASONIC-MCCB-3P',
+        materialName: 'Aptomat khối MCCB Panasonic 3P 100A 22kA',
+        unit: 'Cái',
+        quantity: 2,
+        unitPrice: 1250000,
+        totalPrice: 2500000,
+      },
+      {
+        id: 'slipitem_2_3',
+        materialId: 'mat_4',
+        materialCode: 'OUTDOOR-CAB-4050',
+        materialName: 'Tủ điện ngoài trời vỏ Inox 304 (400x500x200 mm)',
+        unit: 'Cái',
+        quantity: 1,
+        unitPrice: 850000,
+        totalPrice: 850000,
+      },
+      {
+        id: 'slipitem_2_4',
+        materialId: 'mat_8',
+        materialCode: 'TEFLON-TAPE',
+        materialName: 'Băng keo su non (Teflon) quấn ren quấn ống',
+        unit: 'Cuộn',
+        quantity: 20,
+        unitPrice: 15000,
+        totalPrice: 300000,
+      }
+    ],
+  }
+];

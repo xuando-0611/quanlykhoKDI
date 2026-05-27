@@ -1,0 +1,6 @@
+{
+  "name": "Quản lý Kho Nguyễn Công Trứ & HĐ",
+  "description": "Ứng dụng quản lý nhập xuất kho, lưu trữ vật tư kèm hình ảnh, số lượng và lập phiếu xuất kho chuyên nghiệp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
